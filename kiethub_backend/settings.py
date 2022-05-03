@@ -24,8 +24,9 @@ SECRET_KEY = 'django-insecure-j-^nyuq*v0k%&*%h8k1+wej7y)d=tgy(4tr@1dt$ots)_xr9np
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'profiles',
     'corsheaders',
     'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -132,7 +134,18 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 
+REST_FRAMEWORK = {
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ]
+}
 
+TEMPLATE_DIRS = (
+    Path(__file__).resolve().parent / "templates",
+)
 
 # username: kiethub
 # password: kietconnect@1
