@@ -25,5 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain'),
+    path('account/', include('account.urls')),
     path('token/refresh', TokenRefreshView.as_view(), name='token_refresh')
 ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
