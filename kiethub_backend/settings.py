@@ -85,15 +85,25 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }, 
+    },
+    # mysql configuration -----------------------------------------------------
     # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'detid8u2rkl7v9', 
-    #     'USER': 'kfzueolwcvkqqk', 
-    #     'PASSWORD': '1c566cec5ad3ad050d0ae3eb8960442304b7dd4f793060e7b2a3b6c866505bc6',
-    #     'HOST': 'ec2-34-230-110-100.compute-1.amazonaws.com', 
-    #     'PORT': '5432',
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'db_a86f13_kiethub',
+    #     'USER': 'a86f13_kiethub',
+    #     'PASSWORD': '4w30*w8#w3@52',
+    #     'HOST': 'MYSQL8001.site4now.net',
+    #     'PORT': '3306',
     # }
+    # postgres configuration --------------------------------------------------
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myfbrupl', 
+        'USER': 'myfbrupl', 
+        'PASSWORD': 'jb47w9aSqLhtCEwXZ8TNt3oNWXnt7E-Z',
+        'HOST': 'tyke.db.elephantsql.com', 
+        'PORT': '5432',
+    }
 }
 
 
@@ -167,3 +177,7 @@ TEMPLATE_DIRS = (
 
 # username: kiethub
 # password: kietconnect@1
+# Server=MYSQL8001.site4now.net
+# Database=db_a86f13_kiethub
+# Uid=a86f13_kiethub
+# pwd=4w30*w8#w3@52
