@@ -17,6 +17,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             "github",
             "linkedin",
             "url",
+            "profile"
         ]
         read_only = "user"
 
