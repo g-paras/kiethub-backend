@@ -16,6 +16,7 @@ class Profile(models.Model):
     contact = models.IntegerField(null=True)
     github = models.CharField(max_length=100, null=True)
     linkedin = models.CharField(max_length=100, null=True)
+    profile = models.ImageField(upload_to="profile", null=True, blank=True)
     # library_id = models.CharField(max_length=10, null=True)
 
     def __str__(self):
