@@ -38,10 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'profiles',
-    'corsheaders',
-    'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework',
+    'corsheaders',
+    'posts',
+    'account',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -84,6 +87,24 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    # mysql configuration -----------------------------------------------------
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'db_a86f13_kiethub',
+    #     'USER': 'a86f13_kiethub',
+    #     'PASSWORD': '4w30*w8#w3@52',
+    #     'HOST': 'MYSQL8001.site4now.net',
+    #     'PORT': '3306',
+    # }
+    # postgres configuration --------------------------------------------------
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myfbrupl', 
+        'USER': 'myfbrupl', 
+        'PASSWORD': 'jb47w9aSqLhtCEwXZ8TNt3oNWXnt7E-Z',
+        'HOST': 'tyke.db.elephantsql.com', 
+        'PORT': '5432',
     }
 }
 
@@ -123,6 +144,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = 'static/'
+
+STATICFILES_DIRS = (
+    BASE_DIR / 'kiethub_backend' / 'static',
+)
+
+MEDIA_ROOT= BASE_DIR / 'media/'
+MEDIA_URL= "/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -150,3 +179,7 @@ TEMPLATE_DIRS = (
 
 # username: kiethub
 # password: kietconnect@1
+# Server=MYSQL8001.site4now.net
+# Database=db_a86f13_kiethub
+# Uid=a86f13_kiethub
+# pwd=4w30*w8#w3@52

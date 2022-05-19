@@ -1,10 +1,10 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from profiles.views import ProfileView
+from .views import PostView
 
 router = routers.DefaultRouter()
-router.register('', ProfileView)
+router.register('', PostView)
 
 urlpatterns = [
     # path('', get_profile),

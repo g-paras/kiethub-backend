@@ -5,19 +5,7 @@ from rest_framework import serializers
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = [
-            "id",
-            "dob",
-            "user",
-            "course",
-            "specialization",
-            "enrolled_year",
-            "current_year",
-            "contact",
-            "github",
-            "linkedin",
-            "url",
-        ]
+        fields = '__all__'
         read_only = "user"
 
     # custom create profile function
