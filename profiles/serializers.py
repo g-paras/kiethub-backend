@@ -3,14 +3,9 @@ from rest_framework import serializers
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    username = serializers.ReadOnlyField(source='user.username')
+    email = serializers.ReadOnlyField(source='user.email')
     class Meta:
         model = Profile
         fields = '__all__'
-        read_only = "user"
-
-    # custom create profile function
-    def create(self, validated_data):
-        profile = Profile(**validated_data)
-        request = self.context.get("request")
-        profile.user = request.user
-        return profile
+        extra_kwargs = {'user': {'read_only': True}}
