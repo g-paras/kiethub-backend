@@ -85,10 +85,11 @@ WSGI_APPLICATION = 'kiethub_backend.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
+    # sqlite configuration ---------------------------------------------------
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # },
     # mysql configuration -----------------------------------------------------
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
