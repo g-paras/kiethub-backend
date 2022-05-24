@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from profiles.serializers import ProfileSerializer
 from .models import Profile
 from rest_framework import viewsets

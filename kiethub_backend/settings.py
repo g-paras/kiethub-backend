@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'rest_framework_simplejwt',
     'rest_framework',
     'corsheaders',
@@ -155,6 +157,12 @@ STATICFILES_DIRS = (
 MEDIA_ROOT= BASE_DIR / 'media/'
 MEDIA_URL= "/media/"
 
+TEMPLATE_DIRS = (
+    Path(__file__).resolve().parent / "templates",
+)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -175,13 +183,16 @@ REST_FRAMEWORK = {
     # ]
 }
 
+# cloudinary conf
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'kiethub',
+    'API_KEY': '731759781214274',
+    'API_SECRET': 'YH7H06TZHuCME-bgWvEv2wpEuag'
+}
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
 }
-
-TEMPLATE_DIRS = (
-    Path(__file__).resolve().parent / "templates",
-)
 
 # username: kiethub
 # password: kietconnect@1

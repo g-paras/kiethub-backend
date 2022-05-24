@@ -19,6 +19,21 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['username'] = user.username
+        token['profile_id'] = user.profile.id
+
+        return token
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +41,6 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('profile/', include('profiles.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain'),
+    path('token/', MyTokenObtainPairView.as_view(), name='token_obtain'),
     path('token/refresh', TokenRefreshView.as_view(), name='token_refresh')
 ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
