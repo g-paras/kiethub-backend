@@ -20,7 +20,7 @@ class Profile(models.Model):
     contact = models.CharField(max_length=10, null=True)
     github = models.CharField(max_length=100, null=True)
     linkedin = models.CharField(max_length=100, null=True)
-    profile_image = models.ImageField(upload_to="profile", null=True, blank=True)
+    profile_image = models.ImageField(upload_to="profile", default="profile/default-avatar_r01tfd.jpg", null=True, blank=True)
 
     def __str__(self):
         return f"{self.user} | {course_choices[int(self.course)]} | {self.specialization}"
