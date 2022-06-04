@@ -168,11 +168,12 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# manually added cors
+# django cors conf
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
 
+# rest framework conf
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -191,13 +192,10 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': 'YH7H06TZHuCME-bgWvEv2wpEuag'
 }
 
+# simplejwt conf
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
 }
 
 # username: kiethub
 # password: kietconnect@1
-# Server=MYSQL8001.site4now.net
-# Database=db_a86f13_kiethub
-# Uid=a86f13_kiethub
-# pwd=4w30*w8#w3@52
