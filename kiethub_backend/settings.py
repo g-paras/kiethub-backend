@@ -172,6 +172,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # django cors conf
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    "http://127.0.0.1:3000",
 ]
 
 # rest framework conf
@@ -195,7 +196,7 @@ CLOUDINARY_STORAGE = {
 
 # simplejwt conf
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=120),
 }
 
 # username: kiethub
