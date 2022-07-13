@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 
 from posts.models import Post
 from posts.serializers import PostSerializer
@@ -12,6 +12,12 @@ class PostView(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     pagination_class = MyPageNumberPagination
     permission_classes = (IsAuthenticatedOrReadOnly,)
+
+
+class PostRetrieveView(RetrieveAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    lookup_field = 'slug'
 
 
 class UserPostView(ListAPIView):
