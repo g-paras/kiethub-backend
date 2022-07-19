@@ -29,4 +29,4 @@ class Profile(models.Model):
     about_me = models.CharField(max_length=200, default=random_about)
 
     def __str__(self):
-        return f"{self.user} | {course_choices[int(self.course)]} | {self.specialization}"
+        return f"{self.user} | {self.course} | {self.specialization}"
