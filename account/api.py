@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions, mixins
 from rest_framework.response import Response
-from .serializers import RegisterSerializer, UserSerializer
+from .serializers import RegisterSerializer, UserSerializer, ShortUserSerialize
 from django.contrib.auth.models import User
 
 # Register API
@@ -20,6 +20,9 @@ class RegisterApi(generics.GenericAPIView):
             }
         )
 
+class UserListApi(generics.ListAPIView):
+    queryset = User.objects.all().order_by("-date_joined")
+    serializer_class = ShortUserSerialize
 
 class UserRetrieveApi(generics.RetrieveAPIView):
     serializer_class = UserSerializer

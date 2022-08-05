@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 
 # from posts.serializers import PostSerializer
 from profiles.serializers import ProfileSerializer
+from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 # Register serializer
@@ -32,3 +33,9 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = "__all__"
+
+class ShortUserSerialize(ModelSerializer):
+    profile_image = serializers.ImageField(source="profile.profile_image")
+    class Meta: 
+        model = User
+        fields = ['username', 'id', 'email', 'profile_image']
