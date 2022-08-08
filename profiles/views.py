@@ -10,7 +10,8 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 # def get_profile(request):
 #     return JsonResponse([item.name for item in Profile.objects.all()], safe=False)
 
+
 class ProfileView(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    # permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
