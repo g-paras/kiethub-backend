@@ -11,8 +11,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from datetime import timedelta
+from email.policy import default
 from pathlib import Path
 import os
+
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,14 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-j-^nyuq*v0k%&*%h8k1+wej7y)d=tgy(4tr@1dt$ots)_xr9np"
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", True)
+DEBUG = config("DEBUG", cast=bool)
 TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
 
 # Application definition
 
@@ -40,11 +42,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # 3rd party apps
     "cloudinary_storage",
     "cloudinary",
     "rest_framework_simplejwt",
     "rest_framework",
     "corsheaders",
+    # project apps
     "posts",
     "account",
     "profiles",
@@ -95,23 +99,14 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # },
-    # mysql configuration -----------------------------------------------------
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'db_a86f13_kiethub',
-    #     'USER': 'a86f13_kiethub',
-    #     'PASSWORD': '4w30*w8#w3@52',
-    #     'HOST': 'MYSQL8001.site4now.net',
-    #     'PORT': '3306',
-    # }
     # postgres configuration --------------------------------------------------
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "myfbrupl",
-        "USER": "myfbrupl",
-        "PASSWORD": "jb47w9aSqLhtCEwXZ8TNt3oNWXnt7E-Z",
-        "HOST": "tyke.db.elephantsql.com",
-        "PORT": "5432",
+        "ENGINE": config("DATABASE_ENGINE"),
+        "NAME": config("DATABASE_NAME", default=BASE_DIR / "db.sqlite3"),
+        "USER": config("DATABASE_USER"),
+        "PASSWORD": config("DATABASE_PASSWORD"),
+        "HOST": config("DATABASE_HOST"),
+        "PORT": config("DATABASE_PORT", cast=int),
     }
 }
 
@@ -160,7 +155,7 @@ MEDIA_URL = "/media/"
 
 TEMPLATE_DIRS = (Path(__file__).resolve().parent / "templates",)
 
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+DEFAULT_FILE_STORAGE = config("DEFAULT_FILE_STORAGE")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -168,10 +163,7 @@ DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # django cors conf
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-]
+CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", cast=Csv())
 
 # rest framework conf
 REST_FRAMEWORK = {
@@ -180,16 +172,16 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 5,
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    # ]
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
+    ],
 }
 
 # cloudinary conf
 CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": "kiethub",
-    "API_KEY": "731759781214274",
-    "API_SECRET": "YH7H06TZHuCME-bgWvEv2wpEuag",
+    "CLOUD_NAME": config("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": config("CLOUDINARY_API_KEY"),
+    "API_SECRET": config("CLOUDINARY_API_SECRET"),
 }
 
 # simplejwt conf
@@ -198,17 +190,14 @@ SIMPLE_JWT = {
 }
 
 # email settings
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "kiethub@gmail.com"
-EMAIL_HOST_PASSWORD = "nsmeqpdosgvmrsst"
-# EMAIL_TIMEOUT = 2
+EMAIL_BACKEND = config("EMAIL_BACKEND")
+EMAIL_HOST = config("EMAIL_HOST")
+EMAIL_PORT = config("EMAIL_PORT", cast=int)
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool)
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_TIMEOUT = config("EMAIL_TIMEOUT", cast=int, default=2)
 
+# custom context variable
 SITE_URL = "127.0.0.1:8000"
 DOMAIN = "127.0.0.1:8000"
-
-# username: kiethub
-# password: kietconnect@1
