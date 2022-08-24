@@ -5,3 +5,4 @@ django-cors-headers
 Pillow
 psycopg2
 django-cloudinary-storage
+python-decouple==3.6
