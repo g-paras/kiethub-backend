@@ -15,6 +15,12 @@ cd kiethub-backend
 pip install -r requirements.txt
 ```
 
+### 3. copy .env file
+
+```
+cp .env.example .env
+```
+
 ### 3. create and run migrations
 
 ```

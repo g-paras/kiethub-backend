@@ -173,7 +173,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 5,
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticatedOrReadOnly",
+        # "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ],
 }
 
@@ -199,5 +199,5 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 EMAIL_TIMEOUT = config("EMAIL_TIMEOUT", cast=int, default=2)
 
 # custom context variable
-SITE_URL = "127.0.0.1:8000"
-DOMAIN = "127.0.0.1:8000"
+SITE_URL = "http://127.0.0.1:8000"
+DOMAIN = "http://127.0.0.1:8000"
