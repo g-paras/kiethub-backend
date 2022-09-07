@@ -39,7 +39,9 @@ class UserSerializer(ModelSerializer):
 
 class ShortUserSerialize(ModelSerializer):
     profile_image = serializers.ImageField(source="profile.profile_image")
+    about_me = serializers.CharField(source="profile.about_me")
+    
 
     class Meta:
         model = User
-        fields = ["username", "id", "email", "profile_image"]
+        fields = ["username", "id", "first_name","last_name","email", "profile_image","about_me"]
